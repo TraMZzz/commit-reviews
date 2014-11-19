@@ -1,4 +1,4 @@
-Django
-django-annoying
-django-tastypie
+Django == 1.7
+django-annoying == 0.8
+django-tastypie == 0.12.0
 path.py

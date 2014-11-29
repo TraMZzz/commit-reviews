@@ -30,36 +30,26 @@
     <a href="{% url 'social:begin' "github" %}">Log in git</a>
   {% else %}
     <div>Github project</div>
-      <form ng-controller="FormCtrl as form" name="myForm" ng-submit="form.submit(myForm.$valid, data)">
+      <div ng-controller="FormCtrl as form">
+          <form name="myForm" ng-submit="form.submit(myForm.$valid, data)">
             <div >User:</div>
             <input type="text" name='first' ng-model="data.user" required />
             <input type="submit">
-      </form>
+          </form>
+          <div ng-show='userprojects' ng-repeat="project in userprojects">
+              <p>{[{project.name}]}</p>
+              <p><a href="{[{project.git_url}]}">Project on git</a></p>
+              <img style='width:100px; height:100px' src="{[{project.owner.avatar_url}]}">
+              <p>Owner: <a href="{[{project.owner.url}]}">{[{project.owner.login}]}</a></p>
+              <p><a href="{[{project.owner.html_url}]}">Show user in githab</a></p>
+              <p>Project language: {[{project.language}]}</p>
+              <p>Description: {[{project.description}]}</p>
+              <p>------------------------</p>
+          </div>
+      </div>
     {% endif %}
     </div>
     <!--<div class='ng-view-div' ng-view></div>-->
-    <div>
-      <table ng-controller="MyInfo">
-      <tbody>
-        <tr>
-          <td>First Name  {[{mytestinfo.first_name}]}</td>
-          <td>Email  {[{mytestinfo.email}]}</td>
-        </tr>
-         <tr>
-          <td>Last Name  {[{mytestinfo.last_name}]}</td>
-          <td>Jabber  {[{mytestinfo.jabber}]}</td>
-        </tr>
-         <tr>
-          <td>Date of Birth  {[{mytestinfo.birth}]}</td>
-          <td>Skype  {[{mytestinfo.skype}]}</td>
-        </tr>
-         <tr>
-          <td>Bio  {[{mytestinfo.bio}]}</td>
-          <td>Other...  {[{mytestinfo.other}]}</td>
-        </tr>
-      </tbody>
-    </table>
-    </div>
   </div>
   </body>
 </html>

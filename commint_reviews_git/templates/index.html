@@ -26,11 +26,39 @@
   </head>
   <body >
   <div class="container">
-  {% if not request.user.is_authenticated%}
+  {% if not request.user.is_authenticated %}
     <a href="{% url 'social:begin' "github" %}">Log in git</a>
-  {% endif %}
+  {% else %}
     <div>Github project</div>
-      <input type="text"/>
+      <form ng-controller="FormCtrl as form" name="myForm" ng-submit="form.submit(myForm.$valid, data)">
+            <div >User:</div>
+            <input type="text" name='first' ng-model="data.user" required />
+            <input type="submit">
+      </form>
+    {% endif %}
+    </div>
+    <!--<div class='ng-view-div' ng-view></div>-->
+    <div>
+      <table ng-controller="MyInfo">
+      <tbody>
+        <tr>
+          <td>First Name  {[{mytestinfo.first_name}]}</td>
+          <td>Email  {[{mytestinfo.email}]}</td>
+        </tr>
+         <tr>
+          <td>Last Name  {[{mytestinfo.last_name}]}</td>
+          <td>Jabber  {[{mytestinfo.jabber}]}</td>
+        </tr>
+         <tr>
+          <td>Date of Birth  {[{mytestinfo.birth}]}</td>
+          <td>Skype  {[{mytestinfo.skype}]}</td>
+        </tr>
+         <tr>
+          <td>Bio  {[{mytestinfo.bio}]}</td>
+          <td>Other...  {[{mytestinfo.other}]}</td>
+        </tr>
+      </tbody>
+    </table>
     </div>
   </div>
   </body>

@@ -1,5 +1,11 @@
+# core and DB
 Django == 1.7
+
+# django utils and apps:
 django-annoying == 0.8
 django-tastypie == 0.12.0
+
+# other utils (not django apps)
 python-social-auth == 0.2.1
-path.py
+
+# testing and debug:

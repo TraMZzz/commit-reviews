@@ -7,7 +7,7 @@ admin.autodiscover()
 
 
 urlpatterns = patterns('',
-    url(r'^$', 'commint_reviews_git.views.home', name='home'),
+    url(r'^$', 'core.views.home', name='home'),
     url('', include('social.apps.django_app.urls', namespace='social')),
 
     # Uncomment the admin/doc line below to enable admin documentation:

@@ -29,38 +29,38 @@
     <a href="{% url 'social:begin' "github" %}">Log in git</a>
   {% else %}
     <div>Github project</div>
-      <div ng-controller="FormController">
-          <form name="myForm" ng-submit="submit(myForm.$valid, data)">
+      <div ng-controller="FormController as vm">
+          <form name="myForm" ng-submit="vm.submit(myForm.$valid, data)">
             <div >User:</div>
             <input type="text" name='first' ng-model="data.user" required />
             <input type="submit" value="Show">
           </form>
-          <div ng-show='userprojects' ng-repeat="project in userprojects">
-              <p><a ng-click="projectshow(project.url)" href="#">{[{project.name}]}</a></p>
+          <div ng-show='vm.userprojects' ng-repeat="project in vm.userprojects">
+              <p><a ng-click="vm.projectshow(project.url)" href="#">{[{project.name}]}</a></p>
               <p><a href="{[{project.clone_url}]}">Project on git</a></p>
-              <p>Owner: <a ng-click="usershow(project.owner.url)" href="#">{[{project.owner.login}]}</a></p>
-              <div ng-show='userproject'>
+              <p>Owner: <a ng-click="vm.usershow(project.owner.url)" href="#">{[{project.owner.login}]}</a></p>
+              <div ng-show='vm.userproject'>
                 <p>------------------------</p>
-                <p>Created at {[{userproject.created_at}]}</p>
-                <p><a ng-click="commintsshow(project.url)" href="#">Show commints</a></p>
+                <p>Created at {[{vm.userproject.created_at}]}</p>
+                <p><a ng-click="vm.commintsshow(project.url)" href="#">Show commints</a></p>
                 <p>------------------------</p>
               </div>
-              <div ng-show='commints'>
+              <div ng-show='vm.commints'>
                 <p>------------------------</p>
-                <div ng-repeat="commint in commints">
+                <div ng-repeat="commint in vm.commints">
                     <p>Commiter</p>
-                    <p><a href="{[{commint.committer.html_url}]}"><img style='width:100px; height:100px' src="{[{commint.committer.avatar_url}]}"></a></p>
-                    <p><a ng-click="usershow(commint.committer.url)" href="#">{[{commint.committer.login}]}</a></p>
+                    <p><a href="{[{commint.committer.html_url}]}"><img style='width:100px; height:100px' ng-src="{[{commint.committer.avatar_url}]}"></a></p>
+                    <p><a ng-click="vm.usershow(commint.committer.url)" href="#">{[{commint.committer.login}]}</a></p>
                     <p>Commint</p>
                     <p>{[{commint.commit.message}]}</p>
                     <a href="{[{commint.html_url}]}">On git</a>
-                    <a ng-click="commentsshow(commint.comments_url)"href="#">Show comments</a>
-                    <div ng-show='comments'>
-                      <div ng-repeat="comment in comments">
+                    <a ng-click="vm.commentsshow(commint.comments_url)"href="#">Show comments</a>
+                    <div ng-show='vm.comments'>
+                      <div ng-repeat="comment in vm.comments">
                           <p>------------------------</p>
                           <a href="{[{comment.html_url}]}">{[{comment.body}]}</a>
                           <p>Auvtor</p>
-                          <p><a ng-click="usershow(comment.user.url)" href="#">{[{comment.user.login}]}</a></p>
+                          <p><a ng-click="vm.usershow(comment.user.url)" href="#">{[{comment.user.login}]}</a></p>
                           <p>Created at {[{comment.created_at}]}</p>
                       </div>
                     </div>
@@ -68,10 +68,10 @@
                 </div>
                 <p>------------------------</p>
               </div>
-              <div ng-show='user'>
+              <div ng-show='vm.user'>
                   <p>------------------------</p>
-                  <p><a href="{[{user.html_url}]}"><img style='width:100px; height:100px' src="{[{user.avatar_url}]}"></a></p>
-                  <p>Created at {[{user.created_at}]}</p>
+                  <p><a href="{[{vm.user.html_url}]}"><img style='width:100px; height:100px' ng-src="{[{vm.user.avatar_url}]}"></a></p>
+                  <p>Created at {[{vm.user.created_at}]}</p>
                   <p>------------------------</p>
               </div>
               <p>Project language: {[{project.language}]}</p>

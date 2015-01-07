@@ -2,37 +2,38 @@
     "use strict"
     angular
         .module('commentApp')
-        .controller('FormController', ['$scope', '$http', 'Contact', 'ContactDetail', 'ProjectsCommints', 'Projects', 'ProjectsComments',
-                                       function($scope, $http, Contact, ContactDetail, ProjectsCommints, Projects, ProjectsComments) {
-            $scope.submit = function(isValid, form_data) {
+        .controller('FormController', ['Contact', 'ContactDetail', 'ProjectsCommints', 'Projects', 'ProjectsComments',
+                                       function(Contact, ContactDetail, ProjectsCommints, Projects, ProjectsComments) {
+            var vm = this;
+            vm.submit = function(isValid, form_data) {
                 if (isValid) {
                     Contact.submit(form_data.user).then(function(d) {
-                        $scope.userprojects = d;
+                        vm.userprojects = d;
                     });
                 }
             };
 
-            $scope.usershow = function(user_data) {
+            vm.usershow = function(user_data) {
                 ContactDetail.submit(user_data).then(function(d) {
-                    $scope.user = d;
+                    vm.user = d;
                 });
             };
 
-            $scope.projectshow = function(user_project) {
+            vm.projectshow = function(user_project) {
                 Projects.submit(user_project).then(function(d) {
-                    $scope.userproject = d;
+                    vm.userproject = d;
                 });
             };
 
-            $scope.commintsshow = function(user_project) {
+            vm.commintsshow = function(user_project) {
                 ProjectsCommints.submit(user_project).then(function(d) {
-                    $scope.commints = d;
+                    vm.commints = d;
                 });
             };
 
-            $scope.commentsshow = function(user_comments) {
+            vm.commentsshow = function(user_comments) {
                 ProjectsComments.submit(user_comments).then(function(d) {
-                    $scope.comments = d;
+                    vm.comments = d;
                 });
             };
         }]);

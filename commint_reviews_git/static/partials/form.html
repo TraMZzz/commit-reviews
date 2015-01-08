@@ -1,0 +1,13 @@
+<div>
+    <form name="myForm" ng-submit="vm.submit(myForm.$valid, data)">
+        <div >User:</div>
+        <input type="text" name='first' ng-model="data.user" required />
+        <input type="submit" value="Show">
+    </form>
+    <div ng-show='vm.userprojects' ng-repeat="project in vm.userprojects">
+        <p><a href="#/project/{[{project.name}]}">{[{project.name}]}</a></p>
+        <p>Owner: <a href="#/user/{[{project.owner.login}]}">{[{project.owner.login}]}</a></p>
+        <br>
+        <br>
+    </div>
+</div>

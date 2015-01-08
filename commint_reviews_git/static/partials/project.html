@@ -1,0 +1,10 @@
+ <div ng-show='vmp.userproject'>
+    <p>------------------------</p>
+    <p>{[{vmp.userproject.name}]}</p>
+    <p>Project language: {[{vmp.userproject.language}]}</p>
+    <p>Description: {[{vmp.userproject.description}]}</p>
+    <p>Created at {[{vmp.userproject.created_at}]}</p>
+    <p><a href="{[{vmp.userproject.clone_url}]}">Project on git</a></p>
+    <p><a href="#/commints/{[{vmp.userproject.name}]}">Show commints</a></p>
+    <p>------------------------</p>
+</div>

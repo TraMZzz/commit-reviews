@@ -2,8 +2,7 @@
     "use strict"
     angular
         .module('commentApp')
-        .controller('FormController', ['Contact', 'ContactDetail', 'ProjectsCommints', 'Projects', 'ProjectsComments',
-                                       function(Contact, ContactDetail, ProjectsCommints, Projects, ProjectsComments) {
+        .controller('FormController', ['Contact', function(Contact) {
             var vm = this;
             vm.submit = function(isValid, form_data) {
                 if (isValid) {
@@ -12,29 +11,35 @@
                     });
                 }
             };
+        }])
+        .controller('UserController', ['ContactDetail', '$routeParams', function(ContactDetail, $routeParams) {
+            var vmu = this;
+            var user = $routeParams.userName;
+            ContactDetail.submit(user).then(function(d) {
+                vmu.user = d;
+            });
+        }])
+        .controller('ProjectController', ['Projects', '$routeParams', 'Contact', function(Projects, $routeParams, Contact) {
+            var vmp = this;
+            var projectName = $routeParams.projectName;
+            var user = Contact.getUser();
+            Projects.submit(user, projectName).then(function(d) {
+                vmp.userproject = d;
+            });
+        }])
+        .controller('CommintsController', ['ProjectsCommints', 'ProjectsComments', '$routeParams', 'Contact', 
+                                       function(ProjectsCommints, ProjectsComments, $routeParams, Contact) {
+            var vmc = this;
+            var project = $routeParams.projectName;
+            var user = Contact.getUser();
+            ProjectsCommints.submit(user, project).then(function(d) {
+                vmc.commints = d;
+            });
 
-            vm.usershow = function(user_data) {
-                ContactDetail.submit(user_data).then(function(d) {
-                    vm.user = d;
-                });
-            };
-
-            vm.projectshow = function(user_project) {
-                Projects.submit(user_project).then(function(d) {
-                    vm.userproject = d;
-                });
-            };
-
-            vm.commintsshow = function(user_project) {
-                ProjectsCommints.submit(user_project).then(function(d) {
-                    vm.commints = d;
-                });
-            };
-
-            vm.commentsshow = function(user_comments) {
+            vmc.commentsshow = function(user_comments) {
                 ProjectsComments.submit(user_comments).then(function(d) {
-                    vm.comments = d;
+                    vmc.comments = d;
                 });
             };
-        }]);
+        }])
 })();

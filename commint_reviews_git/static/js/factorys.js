@@ -6,7 +6,8 @@
         .factory('ContactDetail', factoryContactDetail)
         .factory('Projects', factoryProjects)
         .factory('ProjectsCommints', factoryProjectsCommints)
-        .factory('ProjectsComments', factoryProjectsComments);
+        .factory('ProjectsComments', factoryProjectsComments)
+        .factory('MyCache', factoryMyCache);
 
             factoryContact.$inject = ['$http',];
             function factoryContact($http) {
@@ -102,6 +103,11 @@
                     }
                 };
                 return ProjectsComments;
+            };
+
+            factoryMyCache.$inject = ['$cacheFactory'];
+            function factoryMyCache($cacheFactory) {
+                return $cacheFactory('myData');
             };
 
 })();

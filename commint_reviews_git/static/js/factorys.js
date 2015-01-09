@@ -7,7 +7,9 @@
         .factory('Projects', factoryProjects)
         .factory('ProjectsCommints', factoryProjectsCommints)
         .factory('ProjectsComments', factoryProjectsComments)
-        .factory('MyCache', factoryMyCache);
+        .factory('MyCache', factoryMyCache)
+        .factory('GetName', factoryGetName)
+        .factory('SetName', factorySetName);
 
             factoryContact.$inject = ['$http',];
             function factoryContact($http) {
@@ -108,6 +110,26 @@
             factoryMyCache.$inject = ['$cacheFactory'];
             function factoryMyCache($cacheFactory) {
                 return $cacheFactory('myData');
+            };
+
+            factoryGetName.$inject = ['$resource'];
+            function factoryGetName($resource) {
+                return $resource(
+                    "/get/name/",
+                    {
+                        "get": {method: 'GET'}
+                    }
+                );
+            };
+
+            factorySetName.$inject = ['$resource'];
+            function factorySetName($resource) {
+                return $resource(
+                    "/set/name/:userName", {userName: "@userName" },
+                    {
+                        "set": {method: 'GET'}
+                    }
+                );
             };
 
 })();

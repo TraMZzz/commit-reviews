@@ -3,9 +3,11 @@ Django == 1.7
 
 # django utils and apps:
 django-annoying == 0.8
-django-tastypie == 0.12.0
+djangorestframework==2.3.10
 
 # other utils (not django apps)
+python-memcached == 1.53
 python-social-auth == 0.2.1
+Markdown==2.3.1        # needs this for browsable API
 
 # testing and debug:

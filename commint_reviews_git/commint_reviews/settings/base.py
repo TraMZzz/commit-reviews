@@ -117,7 +117,7 @@ INSTALLED_APPS = (
     'django.contrib.admindocs',
     'social.apps.django_app.default',
     'core',
-    'tastypie',
+    'rest_framework',
 )
 
 LOGGING = {
@@ -135,6 +135,13 @@ LOGGING = {
             'level': 'ERROR',
             'propagate': True,
         },
+    }
+}
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:11211',
     }
 }
 
@@ -166,8 +173,9 @@ SOCIAL_AUTH_PIPELINE = (
     'social.pipeline.user.user_details',
 )
 
-# Tastypie settings
-API_LIMIT_PER_PAGE = 1000
-TASTYPIE_ALLOW_MISSING_SLASH = True
-TASTYPIE_DEFAULT_FORMATS = ['json', ]
-TASTYPIE_ABSTRACT_APIKEY = False
+# REST settings
+REST_FRAMEWORK = {
+    'PAGINATE_BY': 10,
+    'PAGINATE_BY_PARAM': 'page_size',
+    'MAX_PAGINATE_BY': 100,
+}

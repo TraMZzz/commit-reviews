@@ -1,10 +1,12 @@
- <div ng-show='vmp.userproject'>
-    <p>------------------------</p>
-    <p>{[{vmp.userproject.name}]}</p>
+<h2>Project stats</h2>
+<a href="/">Home</a>
+<div ng-show='vmp.userproject' class="base-unit">
+    <p>{[{vmp.userproject.name}]} by <a href="#/user/{[{vmp.userproject.owner.login}]}">{[{vmp.userproject.owner.login}]}</a></p>
     <p>Project language: {[{vmp.userproject.language}]}</p>
+    <p>{[{vmp.userproject.forks}]} forks</p>
+    <p>{[{vmp.userproject.stargazers_count}]} stars</p>
     <p>Description: {[{vmp.userproject.description}]}</p>
     <p>Created at {[{vmp.userproject.created_at}]}</p>
     <p><a href="{[{vmp.userproject.clone_url}]}">Project on git</a></p>
-    <p><a href="#/commints/{[{vmp.userproject.name}]}">Show commints</a></p>
-    <p>------------------------</p>
+    <p><a class="btn" href="#/commints/{[{vmp.userproject.name}]}">Show commints</a></p>
 </div>

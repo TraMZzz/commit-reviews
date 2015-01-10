@@ -99,5 +99,8 @@ else
 	@echo Done
 endif
 
+sass:
+	sass --watch commint_reviews_git/static/css --sourcemap=none
+
 #
 # end targets

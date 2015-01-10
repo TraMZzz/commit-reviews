@@ -1,20 +1,15 @@
-<div ng-repeat="commint in vmc.commints">
-  <p>Commiter</p>
-      <p><a href="{[{commint.committer.html_url}]}"><img style='width:100px; height:100px' ng-src="{[{commint.committer.avatar_url}]}"></a></p>
-      <p><a href="#/user/{[{commint.committer.login}]}">{[{commint.committer.login}]}</a></p>
-      <p>Commint</p>
+<h2>Commints</h2>
+<a href="/">Home</a>
+<div ng-repeat="commint in vmc.commints" class="base-unit">
+  <p>Commiter by <a href="#/user/{[{commint.committer.login}]}">{[{commint.committer.login}]}</a></p>
       <p>{[{commint.commit.message}]}</p>
       <a href="{[{commint.html_url}]}">On git</a>
-      <p ng-click="vmc.commentsshow(commint.comments_url)">Show comments</p>
-      <div ng-show='vmc.comments'>
-        <div ng-repeat="comment in vmc.comments">
-            <p>------------------------</p>
-            <a href="{[{comment.html_url}]}">{[{comment.body}]}</a>
-            <p>Auvtor</p>
-            <p><a href="#/user/{[{comment.user.login}]}">{[{comment.user.login}]}</a></p>
-            <p>Created at {[{comment.created_at}]}</p>
+      <button class="btn" ng-click="vmc.commentsshow(commint.comments_url)" > Show comments</button>
+      <div ng-show='vmc.comments' class="commnets-unit">
+        <div ng-repeat="comment in vmc.comments" class="commnet">
+              <p>Comment by <a href="#/user/{[{comment.user.login}]}">{[{comment.user.login}]}</a> in {[{comment.created_at}]}</p>
+              <p>{[{comment.body}]}</p>
+              <a href="{[{comment.html_url}]}">Show in Git</a>
         </div>
       </div>
-      <p>------------------------</p>
-  <p>------------------------</p>
 </div>

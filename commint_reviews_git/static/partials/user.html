@@ -1,6 +1,7 @@
-<div ng-show='vmu.user'>
-    <p>------------------------</p>
-    <p><a href="{[{vmu.user.html_url}]}"><img style='width:100px; height:100px' ng-src="{[{vmu.user.avatar_url}]}"></a></p>
+<h2>User</h2>
+<a href="/">Home</a>
+<div ng-show='vmu.user' class="base-unit">
+    <img style='width:100px; height:100px' ng-src="{[{vmu.user.avatar_url}]}">
+    <a class="btn" href="{[{vmu.user.html_url}]}"> Show on Git</a>
     <p>Created at {[{vmu.user.created_at}]}</p>
-    <p>------------------------</p>
 </div>

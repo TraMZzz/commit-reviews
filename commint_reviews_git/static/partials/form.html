@@ -1,13 +1,36 @@
-<div>
+<div class="base-unit form-unit">
     <form name="myForm" ng-submit="vm.submit(myForm.$valid, data)">
-        <div >User:</div>
+        <div>
+            <h3>Search user projects in Git</h3>
+        </div>
         <input type="text" name='first' ng-model="data.user" required />
-        <input type="submit" value="Show">
+        <input type="submit" value="Search" class="btn">
     </form>
-    <div ng-show='vm.userprojects' ng-repeat="project in vm.userprojects">
-        <p><a href="#/project/{[{project.name}]}">{[{project.name}]}</a></p>
+</div>
+
+<div ng-show='vm.userprojects' class="carts-unit">
+    <div class='carts-unit-project' ng-repeat="project in vm.userprojects">
+        <h3><a href="#/git/project/{[{project.name}]}">{[{project.name}]}</a></h3>
         <p>Owner: <a href="#/user/{[{project.owner.login}]}">{[{project.owner.login}]}</a></p>
-        <br>
-        <br>
+        <div class="carts-info">
+            <ul class="simple-stats pull-left">
+                <li>
+                    {[{project.forks}]} forks
+                </li>
+                <li>
+                    {[{project.language}]}
+                </li>
+            </ul>
+            <ul class="simple-stats pull-left">
+                <li>
+                    {[{project.open_issues}]} issue
+                </li>
+                <li>
+                    {[{project.stargazers_count}]} stars
+                </li>
+            </ul>
+        </div>
+        <p>{[{project.description}]}</p>
+        <a class="btn" href="#/git/project/{[{project.name}]}">View Stats</a>
     </div>
 </div>

@@ -21,7 +21,7 @@
                     controller: 'CommintsController',
                     controllerAs: "vmc"
                 })
-                .when('/project/:projectName', {
+                .when('/git/project/:projectName', {
                     templateUrl: '/static/partials/project.html',
                     controller: 'ProjectController',
                     controllerAs: "vmp"
